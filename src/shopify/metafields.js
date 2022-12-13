@@ -84,7 +84,7 @@ class Metafields {
 						namespace: meta.namespace,
 						key: meta.key,
 						value: meta.value,
-						value_type: meta.value_type,
+						type: meta.type,
 					},
 				};
 				await apiPost(this.store.getAuth(), `${resource}/${item.id}/metafields.json`, newMeta)

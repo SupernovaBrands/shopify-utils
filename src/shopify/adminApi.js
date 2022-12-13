@@ -3,7 +3,7 @@ const _ = require('lodash');
 const fs = require('fs');
 const mkdirp = require('mkdirp');
 
-const makeUrl = ({ apiKey, apiPass, hostname }, path) => `https://${apiKey}:${apiPass}@${hostname}/admin/api/2020-07/${path}`;
+const makeUrl = ({ apiKey, apiPass, hostname }, path) => `https://${apiKey}:${apiPass}@${hostname}/2022-04/${path}`;
 
 const getNextPage = (prevData, url, link) => {
 	if (!_.includes(link, 'rel="next"')) return prevData;
