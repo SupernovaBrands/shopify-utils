@@ -37,7 +37,7 @@ const authFrom = _.get(config, storeFrom);
 const authTo = _.get(config, storeTo);
 
 const doStuff = async () => {
-	const store = new Store(storeFrom, authFrom.apiKey, authFrom.apiPass, authFrom.hostname, `files/${storeFrom}`);
+	const store = new Store(storeFrom, authFrom.apiKey, authFrom.apiPass, authFrom.apiToken, authFrom.hostname, `files/${storeFrom}`);
 	if (!_.isEmpty(itemId) || _.isInteger(itemId)) {
 		await store.metafields.getMetafields(resource, itemId, 'id');
 	} else if (!_.isEmpty(itemHandle)) {
@@ -47,7 +47,7 @@ const doStuff = async () => {
 	}
 
 	if (action === 'post') {
-		const store2 = (storeFrom === storeTo) ? store : new Store(storeTo, authTo.apiKey, authTo.apiPass, authTo.hostname, `files/${storeTo}`);
+		const store2 = (storeFrom === storeTo) ? store : new Store(storeTo, authTo.apiKey, authTo.apiPass, authFrom.apiToken, authTo.hostname, `files/${storeTo}`);
 		await store2.metafields.setMetafields(resource, store.metafields[resource]);
 
 		let namespaces = [];

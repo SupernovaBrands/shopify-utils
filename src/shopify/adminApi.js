@@ -21,7 +21,12 @@ const getNextPage = (prevData, url, link) => {
 
 const apiGet = (auth, path, param = {}) => {
 	const url = makeUrl(auth, path);
-	return axios({ method: 'get', url, params: { ...param, limit: 250 } })
+	const config = { method: 'get', url, params: { ...param, limit: 250 } };
+	if (auth.hostname === 'my-cocoandeve.myshopify.com') {
+		axios.defaults.headers.common['X-Shopify-Access-Token'] = auth.apiToken;
+		console.log('url ', auth);
+	}
+	return axios(config)
 		.then((res) => {
 			if (res.headers.link !== undefined) {
 				return getNextPage(res.data, url, res.headers.link);
@@ -32,6 +37,10 @@ const apiGet = (auth, path, param = {}) => {
 
 const apiPost = (auth, path, data = {}) => {
 	const url = makeUrl(auth, path);
+	if (auth.hostname === 'my-cocoandeve.myshopify.com') {
+		axios.defaults.headers.common['X-Shopify-Access-Token'] = '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';
+		console.log('url post', auth);
+	}
 	return axios({ method: 'post', url, data })
 		.then((res) => res.data);
 };

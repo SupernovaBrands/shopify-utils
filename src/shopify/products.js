@@ -7,6 +7,7 @@ class Products {
 	}
 
 	async getAll(attrs = null) {
+		console.log('auth', this.store.getAuth());
 		this.items = await fetchData({
 			prop: 'products', auth: this.store.getAuth(), folder: this.store.path, attrs,
 		});

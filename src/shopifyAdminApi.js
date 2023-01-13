@@ -21,6 +21,7 @@ const getNextPage = (prevData, url, link) => {
 
 const apiGet = (auth, path, param = {}) => {
 	const url = makeUrl(auth, path);
+	console.log('test');
 	return axios({ method: 'get', url, params: { ...param, limit: 250 } })
 		.then((res) => {
 			if (res.headers.link !== undefined) {
