@@ -74,7 +74,7 @@ const fetchData = async ({
 		return doOther();
 	} else {
 		const url = s.urlPath(itemId);
-		console.log('(helper1) Fetching from server:', url, 'filePath:', file);
+		console.log('Fetching:', url, 'filePath:', file);
 		data = await getToFile(auth, url, null, s.prop, attrs, filepath)
 			.catch((err) => {
 				console.log(`Fetch error: ${prop} ${itemId}`, JSON.stringify(err, null, 2));

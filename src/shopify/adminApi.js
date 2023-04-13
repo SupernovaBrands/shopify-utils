@@ -22,8 +22,11 @@ const getNextPage = (prevData, url, link) => {
 const apiGet = (auth, path, param = {}) => {
 	const url = makeUrl(auth, path);
 	const config = { method: 'get', url, params: { ...param, limit: 250 } };
-	if (auth.hostname === 'my-cocoandeve.myshopify.com' || auth.hostname === 'my-sandandsky.myshopify.com') {
+	if (auth.hostname === 'my-cocoandeve.myshopify.com') {
 		axios.defaults.headers.common['X-Shopify-Access-Token'] = auth.apiToken;
+	}
+	if (auth.hostname === 'my-sandandsky.myshopify.com') {
+		axios.defaults.headers.common['X-Shopify-Access-Token'] = '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';
 	}
 	return axios(config)
 		.then((res) => {

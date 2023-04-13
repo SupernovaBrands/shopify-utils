@@ -9,7 +9,6 @@ const { Pages } = require('./pages');
 
 class Store {
 	constructor(name, apiKey, apiPass, apiToken, hostname, path) {
-		console.log('apiToken', apiToken);
 		this.name = name;
 		this.apiKey = apiKey;
 		this.apiPass = apiPass;
@@ -28,8 +27,9 @@ class Store {
 	}
 
 	getAuth() {
-		console.log('this.apiToken', this.apiToken);
-		return { apiKey: this.apiKey, apiPass: this.apiPass, hostname: this.hostname, apiToken: this.apiToken };
+		return {
+			apiKey: this.apiKey, apiPass: this.apiPass, hostname: this.hostname, apiToken: this.apiToken,
+		};
 	}
 }
 
